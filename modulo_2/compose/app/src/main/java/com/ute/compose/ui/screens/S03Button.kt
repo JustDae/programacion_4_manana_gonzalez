@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun S03_ButtonScreen() {
+fun S03ButtonScreen() {
     // Estado para mostrar cuál botón fue presionado
     var ultimoClick by remember { mutableStateOf("(ninguno)") }
 
@@ -104,5 +104,5 @@ fun S03_ButtonScreen() {
 @Preview(showBackground = true)
 @Composable
 fun S03_Preview() {
-    MaterialTheme { S03_ButtonScreen() }
+    MaterialTheme { S03ButtonScreen() }
 }
