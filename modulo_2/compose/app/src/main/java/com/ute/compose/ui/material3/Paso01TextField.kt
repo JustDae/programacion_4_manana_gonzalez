@@ -1,5 +1,6 @@
+package com.ute.compose.ui.material3
+
 // ui/Paso01_TextField.kt
-package com.tuapp.contactos.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -81,6 +82,7 @@ private fun DemoFormularioContacto() {
     var telefono   by remember { mutableStateOf("") }
     var contrasena by remember { mutableStateOf("") }
     var verPass    by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf("") }
 
     // Validaciones derivadas del estado — se recalculan en cada recomposición
     val nombreValido   = nombre.trim().length >= 2
@@ -197,17 +199,18 @@ private fun DemoFormularioContacto() {
         )
 
         Button(
-            onClick  = { /* Paso 6: mostrará un diálogo de confirmación */ },
+            onClick  = {message="Informacion Guardada"},
             enabled  = formularioValido,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(if (formularioValido) "Guardar contacto ✓" else "Completa todos los campos")
         }
+        Text(text=message)
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun Paso01_Preview() {
-    MaterialTheme { Paso01_TextFieldScreen() }
+    MaterialTheme { Paso01TextFieldScreen() }
 }

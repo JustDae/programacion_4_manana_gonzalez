@@ -33,6 +33,7 @@ fun Paso01SumaScreen() {
 }
 
 
+
 // ── Demo 2: formulario con validación completa ───────────────────────────────
 @Composable
 private fun SumaNumeros() {
