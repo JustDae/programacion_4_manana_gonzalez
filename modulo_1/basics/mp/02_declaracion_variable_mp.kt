@@ -1,5 +1,4 @@
 fun main() {
-    //
     val unidad = "Bus-042"
     val linea: String = "Troncal Central"
     val tarifa = 1.50
