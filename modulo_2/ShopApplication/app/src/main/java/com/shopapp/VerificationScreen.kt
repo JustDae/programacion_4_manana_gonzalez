@@ -84,7 +84,7 @@ fun VerificationScreen(
 }
 
 @Composable
-private fun EnvCard(items: List<Pair<String, String>>) {
+fun EnvCard(items: List<Pair<String, String>>) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
