@@ -4,9 +4,7 @@ package com.shopapp.presentation.navigation
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.*
@@ -18,8 +16,10 @@ import com.shopapp.presentation.ui.admin.orders.OrderAdminDetailScreen
 import com.shopapp.presentation.ui.admin.orders.OrdersAdminScreen
 import com.shopapp.presentation.ui.admin.products.ProductsAdminScreen
 import com.shopapp.presentation.ui.admin.users.UsersAdminScreen
+import com.shopapp.presentation.ui.auth.ForgotPasswordScreen
 import com.shopapp.presentation.ui.auth.LoginScreen
 import com.shopapp.presentation.ui.auth.RegisterScreen
+import com.shopapp.presentation.ui.auth.ResetPasswordConfirmScreen
 import com.shopapp.presentation.ui.client.orders.OrderDetailScreen
 import com.shopapp.presentation.ui.client.orders.OrdersScreen
 import com.shopapp.presentation.ui.client.profile.ProfileScreen
@@ -30,8 +30,8 @@ import com.shopapp.presentation.ui.uipublic.product.ProductDetailScreen
 import com.shopapp.presentation.viewmodel.AuthViewModel
 import com.shopapp.presentation.viewmodel.CartViewModel
 import com.shopapp.presentation.viewmodel.OrdersAdminViewModel
+
 import com.shopapp.theme.Surface
-import com.shopapp.theme.TextSecondary
 
 @Composable
 fun NavGraph(
@@ -108,13 +108,14 @@ fun NavGraph(
             // ── LOGIN ───────────────────────────────
             composable(Screen.Login.route) {
                 LoginScreen(
-                    onLoginSuccess = { staff ->
+                    onLoginSuccess       = { staff ->
                         val dest = if (staff) Screen.AdminDashboard.route else Screen.Home.route
                         navController.navigate(dest) {
                             popUpTo(Screen.Login.route) { inclusive = true }
                         }
                     },
                     onNavigateToRegister = { navController.navigate(Screen.Register.route) },
+                    onForgotPassword     = { navController.navigate(Screen.ForgotPassword.route) },  // ← nuevo
                     viewModel            = authViewModel,
                 )
             }
@@ -130,6 +131,23 @@ fun NavGraph(
                     },
                     onNavigateToLogin = { navController.popBackStack() },
                     viewModel         = authViewModel,
+                )
+            }
+            composable(Screen.ForgotPassword.route) {
+                ForgotPasswordScreen(
+                    onBack        = { navController.popBackStack() },
+                    onGoToConfirm = { navController.navigate(Screen.ResetPasswordConfirm.route) },
+                )
+            }
+
+            composable(Screen.ResetPasswordConfirm.route) {
+                ResetPasswordConfirmScreen(
+                    onBack         = { navController.popBackStack() },
+                    onResetSuccess = {
+                        navController.navigate(Screen.Login.route) {
+                            popUpTo(Screen.Login.route) { inclusive = true }
+                        }
+                    },
                 )
             }
 

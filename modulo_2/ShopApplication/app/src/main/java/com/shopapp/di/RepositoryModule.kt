@@ -27,4 +27,10 @@ abstract class RepositoryModule {
 
     @Binds @Singleton
     abstract fun bindUserRepository    (impl: UserRepositoryImpl    ): UserRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPasswordResetRepository(
+        impl: PasswordResetRepositoryImpl,
+    ): PasswordResetRepository
 }
