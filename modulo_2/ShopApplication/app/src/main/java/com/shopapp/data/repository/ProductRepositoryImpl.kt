@@ -11,23 +11,30 @@ import com.shopapp.domain.model.ProductPayload
 import com.shopapp.domain.repository.ProductRepository
 import javax.inject.Inject
 import javax.inject.Singleton
+import android.content.Context
+import android.net.Uri
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Singleton
 class ProductRepositoryImpl @Inject constructor(
     private val api: ProductApi,
+    @ApplicationContext private val context: Context
 ) : ProductRepository {
 
     override suspend fun getProducts(filters: ProductFilters): Result<Pair<List<Product>, Int>> =
         runCatching {
             val params = buildMap<String, String> {
-                filters.search?.let   { put("search",    it) }
-                filters.category?.let { put("category",  it.toString()) }
+                filters.search?.let { put("search", it) }
+                filters.category?.let { put("category", it.toString()) }
                 filters.priceMin?.let { put("price_min", it.toString()) }
                 filters.priceMax?.let { put("price_max", it.toString()) }
                 filters.stockMin?.let { put("stock_min", it.toString()) }
                 filters.isActive?.let { put("is_active", it.toString()) }
-                filters.ordering?.let { put("ordering",  it) }
-                put("page",      filters.page.toString())
+                filters.ordering?.let { put("ordering", it) }
+                put("page", filters.page.toString())
                 put("page_size", filters.pageSize.toString())
             }
             val response = api.getProducts(params)
@@ -72,12 +79,35 @@ class ProductRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             val s = response.body()!!
             mapOf(
-                "total_active"   to s.totalActive,
+                "total_active" to s.totalActive,
                 "total_inactive" to s.totalInactive,
-                "avg_price"      to (s.avgPrice ?: 0.0),
-                "total_stock"    to (s.totalStock ?: 0),
-                "out_of_stock"   to s.outOfStock,
+                "avg_price" to (s.avgPrice ?: 0.0),
+                "total_stock" to (s.totalStock ?: 0),
+                "out_of_stock" to s.outOfStock,
             )
         } else error("Error ${response.code()}")
     }
+
+    override suspend fun uploadProductImage(id: Int, uri: Uri): Result<String> =
+        runCatching {
+            val part = uri.toMultipart(context, fieldName = "image")
+            val response = api.uploadProductImage(id, part)
+            if (response.isSuccessful) {
+                response.body()?.imageUrl ?: error("El servidor no devolvió una URL de imagen")
+            } else {
+                error(response.errorBody()?.string() ?: "Error ${response.code()}")
+            }
+        }
+
+
 }
+internal fun Uri.toMultipart(context: Context, fieldName: String): MultipartBody.Part {
+    val resolver    = context.contentResolver
+    val mimeType    = resolver.getType(this) ?: "image/jpeg"
+    val bytes       = resolver.openInputStream(this)?.readBytes()
+        ?: error("No se pudo leer el archivo seleccionado")
+    val requestBody = bytes.toRequestBody(mimeType.toMediaTypeOrNull())
+    val fileName    = "upload.${mimeType.substringAfterLast('/')}"
+    return MultipartBody.Part.createFormData(fieldName, fileName, requestBody)
+}
+
