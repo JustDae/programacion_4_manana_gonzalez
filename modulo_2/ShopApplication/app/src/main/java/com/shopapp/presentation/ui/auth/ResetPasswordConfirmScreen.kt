@@ -1,4 +1,3 @@
-// presentation/ui/auth/ResetPasswordConfirmScreen.kt
 package com.shopapp.presentation.ui.auth
 
 import androidx.compose.foundation.layout.*
