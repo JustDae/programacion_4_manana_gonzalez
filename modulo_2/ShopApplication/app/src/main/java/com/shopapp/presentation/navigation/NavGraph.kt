@@ -115,7 +115,7 @@ fun NavGraph(
                         }
                     },
                     onNavigateToRegister = { navController.navigate(Screen.Register.route) },
-                    onForgotPassword     = { navController.navigate(Screen.ForgotPassword.route) },  // ← nuevo
+                    onForgotPassword     = { navController.navigate(Screen.ForgotPassword.route) },
                     viewModel            = authViewModel,
                 )
             }
