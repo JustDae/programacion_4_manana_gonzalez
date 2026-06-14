@@ -457,17 +457,36 @@ fun NavGraph(
                 )
             }
 
-// ── Notificaciones de staff ───────────────────────────────────────────────────
+// ── ADMIN NOTIFICATIONS ───────────────────────────────────────────────────
             composable(Screen.SendNotification.route) {
                 if (!isStaff) {
                     LaunchedEffect(Unit) {
-                        navController.popBackStack()
+                        navController.navigate(Screen.Home.route) { popUpTo(0) }
                     }
                     return@composable
                 }
-                SendNotificationScreen(
-                    onBack = { navController.popBackStack() },
-                )
+
+                AdminScaffold(
+                    currentRoute = Screen.SendNotification.route,
+                    user         = currentUser,
+                    title        = "Enviar notificación",
+                    onNavClick   = { route ->
+                        navController.navigate(route) { launchSingleTop = true }
+                    },
+                    onStoreClick = { navController.navigate(Screen.Home.route) },
+                    onLogout     = {
+                        authViewModel.logout()
+                        navController.navigate(Screen.Login.route) {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    },
+                ) { padding ->
+                    Box(modifier = Modifier.padding(padding)) {
+                        SendNotificationScreen(
+                            onBack = { navController.popBackStack() },
+                        )
+                    }
+                }
             }
         }
     }
