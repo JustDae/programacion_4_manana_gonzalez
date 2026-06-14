@@ -223,6 +223,7 @@ fun NavGraph(
                                 popUpTo(0) { inclusive = true }
                             }
                         },
+                        onSendNotification = { navController.navigate(Screen.SendNotification.route) },
                     )
                 }
             }
