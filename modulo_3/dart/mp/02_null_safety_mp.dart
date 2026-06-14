@@ -4,7 +4,7 @@ void main() {
   String? destino = null;
   destino = 'Estación Central';
 
-  String? linea;
+  String? linea = 'Línea 1';
 
   print(linea?.length);
 
