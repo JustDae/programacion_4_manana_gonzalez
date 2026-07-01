@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:modulo10_riverpod/screens/pantalla_busqueda.dart';
+import 'package:modulo10_riverpod/screens/pantalla_dashboard.dart';
+import 'package:modulo10_riverpod/screens/pantalla_metricas.dart';
 import 'package:modulo10_riverpod/screens/pantalla_servidores.dart';
 
 // Importa las pantallas a medida que las crees en cada paso:
@@ -18,10 +21,10 @@ import 'package:modulo10_riverpod/screens/pantalla_servidores.dart';
 // │  4  Paso 4  AsyncNotifierProvider + métricas loading/error      │
 // │  5  Paso 5  NavigationBar con dos tabs usando Riverpod          │
 // └──────────────────────────────────────────────────────────────────┘
-const int paso = 2;
+const int paso = 5;
 
 // StateProvider — estado simple del Paso 1
-final contadorProvider = StateProvider<int>((ref) => 0);
+final contadorProvider = StateProvider<int>((ref) => 5);
 
 void main() {
   runApp(const ProviderScope(child: AppMonitoreo()));
@@ -41,6 +44,9 @@ class AppMonitoreo extends StatelessWidget {
       home: switch (paso) {
         1 => const _Paso1(),
         2 => const PantallaServidores(),
+        3 => const PantallaBusqueda(),
+        4 => const PantallaMetricas(),
+        5 => const PantallaDashboard(),
         // 3 => const PantallaBusqueda(),
         // 4 => const PantallaMetricas(),
         // 5 => const PantallaDashboard(),
