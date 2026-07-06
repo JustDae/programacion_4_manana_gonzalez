@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_shop_app/presentation/screens/auth/profile_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/cart/cart_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/catalog/product_detail_screen.dart';
+import 'package:flutter_shop_app/presentation/screens/orders/order_detail_screen.dart';
+import 'package:flutter_shop_app/presentation/screens/orders/orders_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../../domain/model/auth_state.dart';
 import '../providers/auth_provider.dart';
@@ -80,9 +83,21 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: '/cart',
             builder: (_, __) => const CartScreen(),
           ),
-          GoRoute(path: '/orders',  builder: (_, __) => const _PlaceholderScreen('Mis pedidos — M6')),
           GoRoute(path: '/orders/:id', builder: (_, s) => _PlaceholderScreen('Pedido #${s.pathParameters['id']} — M6')),
-          GoRoute(path: '/profile', builder: (_, __) => const _PlaceholderScreen('Perfil — M6')),
+          GoRoute(
+  path: '/orders',
+  builder: (_, __) => const OrdersScreen(),
+),
+GoRoute(
+  path: '/orders/:id',
+  builder: (_, s) => OrderDetailScreen(
+    orderId: int.parse(s.pathParameters['id']!),
+  ),
+),
+GoRoute(
+  path: '/profile',
+  builder: (_, __) => const ProfileScreen(),
+),
         ],
       ),
 
