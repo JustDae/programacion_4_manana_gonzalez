@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../theme/app_colors.dart';
 import '../../providers/auth_provider.dart';
 
@@ -68,6 +69,28 @@ class ProfileScreen extends ConsumerWidget {
                   ),
                 ),
               const SizedBox(height: 32),
+              const SizedBox(height: 24),
+
+// Botón Admin — solo visible para staff
+if (user?.isStaff == true) ...[
+  SizedBox(
+    width:  double.infinity,
+    height: 52,
+    child:  ElevatedButton.icon(
+      onPressed: () => context.go('/admin'),
+      icon:  const Icon(Icons.admin_panel_settings_outlined),
+      label: const Text('Panel Admin'),
+    ),
+  ),
+  const SizedBox(height: 12),
+],
+
+// Botón logout (sin cambios)
+_LogoutButton(
+  onConfirm: () async {
+    await ref.read(authProvider.notifier).logout();
+  },
+),
 
               // Info
               Container(
