@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_shop_app/presentation/screens/admin/categories_admin_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/admin/dashboard_screen.dart';
+import 'package:flutter_shop_app/presentation/screens/admin/order_admin_detail_screen.dart';
+import 'package:flutter_shop_app/presentation/screens/admin/orders_admin_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/admin/products_admin_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/auth/profile_screen.dart';
 import 'package:flutter_shop_app/presentation/screens/cart/cart_screen.dart';
@@ -143,7 +145,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => AdminShell(
           title:        'Pedidos',
           currentRoute: state.matchedLocation,
-          child:        const _AdminPlaceholder('Pedidos admin — M10'),
+          child:        const OrdersAdminScreen(),
         ),
       ),
       GoRoute(
@@ -151,8 +153,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, state) => AdminShell(
           title:        'Detalle pedido',
           currentRoute: '/admin/orders',
-          child:        _AdminPlaceholder(
-              'Pedido #${state.pathParameters['id']} — M10'),
+          child:        OrderAdminDetailScreen(
+            orderId: int.parse(state.pathParameters['id']!),
+          ),
         ),
       ),
       GoRoute(
