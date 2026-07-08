@@ -18,10 +18,10 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final _formKey    = GlobalKey<FormState>();
-  final _userCtrl   = TextEditingController();
-  final _passCtrl   = TextEditingController();
-  bool  _submitted  = false;
+  final _formKey = GlobalKey<FormState>();
+  final _userCtrl = TextEditingController();
+  final _passCtrl = TextEditingController();
+  bool _submitted = false;
 
   @override
   void dispose() {
@@ -34,17 +34,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _submitted = true);
     if (!_formKey.currentState!.validate()) return;
     await ref.read(authProvider.notifier).login(
-      _userCtrl.text,
-      _passCtrl.text,
-    );
+          _userCtrl.text,
+          _passCtrl.text,
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
     final isLoading = authState.isChecking;
-    final error     = authState.error;
-    final tt        = Theme.of(context).textTheme;
+    final error = authState.error;
+    final tt = Theme.of(context).textTheme;
 
     // Escuchar cambios de estado para navegar
     ref.listen<AuthState>(authProvider, (_, next) {
@@ -74,31 +74,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
               // Card del formulario
               Container(
-                padding:    const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color:        AppColors.surface,
+                  color: AppColors.surface,
                   borderRadius: BorderRadius.circular(20),
-                  border:       Border.all(color: AppColors.border),
+                  border: Border.all(color: AppColors.border),
                 ),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       // Error general del servidor
                       if (error != null) ...[
                         Container(
-                          width:   double.infinity,
+                          width: double.infinity,
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color:        AppColors.error.withValues(alpha: 0.1),
+                            color: AppColors.error.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(10),
-                            border:       Border.all(color: AppColors.error.withValues(alpha: 0.3)),
+                            border: Border.all(
+                                color: AppColors.error.withValues(alpha: 0.3)),
                           ),
                           child: Text(
                             error,
-                            style: const TextStyle(color: AppColors.error, fontSize: 13),
+                            style: const TextStyle(
+                                color: AppColors.error, fontSize: 13),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -106,36 +107,46 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
                       // Campo usuario
                       AuthTextField(
-                        label:      'Usuario',
-                        hint:       'tu_usuario',
+                        label: 'Usuario',
+                        hint: 'tu_usuario',
                         controller: _userCtrl,
-                        enabled:    !isLoading,
-                        validator:  _submitted ? validateUsername : null,
-                        onChanged:  (_) => ref.read(authProvider.notifier).clearError(),
+                        enabled: !isLoading,
+                        validator: _submitted ? validateUsername : null,
+                        onChanged: (_) =>
+                            ref.read(authProvider.notifier).clearError(),
                       ),
                       const SizedBox(height: 16),
 
                       // Campo contraseña
                       AuthTextField(
-                        label:           'Contraseña',
-                        hint:            '••••••••',
-                        controller:      _passCtrl,
-                        isPassword:      true,
-                        enabled:         !isLoading,
-                        keyboardType:    TextInputType.visiblePassword,
+                        label: 'Contraseña',
+                        hint: '••••••••',
+                        controller: _passCtrl,
+                        isPassword: true,
+                        enabled: !isLoading,
+                        keyboardType: TextInputType.visiblePassword,
                         textInputAction: TextInputAction.done,
-                        validator:       _submitted
-                            ? (v) => (v == null || v.isEmpty) ? 'Campo obligatorio' : null
+                        validator: _submitted
+                            ? (v) => (v == null || v.isEmpty)
+                                ? 'Campo obligatorio'
+                                : null
                             : null,
-                        onChanged:       (_) => ref.read(authProvider.notifier).clearError(),
+                        onChanged: (_) =>
+                            ref.read(authProvider.notifier).clearError(),
                       ),
                       const SizedBox(height: 24),
 
                       // Botón
                       AuthButton(
-                        label:     'Iniciar sesión',
+                        label: 'Iniciar sesión',
                         onPressed: _submit,
                         isLoading: isLoading,
+                      ),
+
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: () => context.push('/forgot-password'),
+                        child: const Text('¿Olvidaste tu contraseña?'),
                       ),
                     ],
                   ),

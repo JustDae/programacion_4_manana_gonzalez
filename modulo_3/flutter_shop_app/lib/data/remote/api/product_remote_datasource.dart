@@ -6,6 +6,31 @@ import '../../../core/error/api_exception.dart';
 import 'dio_client.dart';
 import '../../../domain/model/product.dart';
 
+class PaginatedProducts {
+  final int count;
+  final String? next;
+  final String? previous;
+  final List<Product> results;
+
+  const PaginatedProducts({
+    required this.count,
+    this.next,
+    this.previous,
+    required this.results,
+  });
+
+  factory PaginatedProducts.fromJson(Map<String, dynamic> json) {
+    return PaginatedProducts(
+      count: json['count'] as int,
+      next: json['next'] as String?,
+      previous: json['previous'] as String?,
+      results: (json['results'] as List<dynamic>)
+          .map((p) => Product.fromJson(p as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+}
+
 abstract class ProductRemoteDatasource {
   Future<PaginatedProducts> getProducts({
     String?  search,
@@ -24,6 +49,9 @@ abstract class ProductRemoteDatasource {
   Future<void>                deleteProduct(int id);
   Future<Map<String, dynamic>> restock(int id, int quantity);
   Future<Map<String, dynamic>> getStats();
+  
+  // NUEVO: Método dedicado única y exclusivamente a subir la imagen sin alterar el JSON anterior
+  Future<Product>             uploadProductImage(int id, String imagePath);
 }
 
 class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
@@ -74,6 +102,7 @@ class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
   @override
   Future<Product> createProduct(Map<String, dynamic> payload) async {
     try {
+      // Regresamos a JSON puro para asegurar estabilidad con los campos del formulario
       final res = await _dio.post('/products/', data: payload);
       return Product.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
@@ -84,7 +113,24 @@ class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
   @override
   Future<Product> updateProduct(int id, Map<String, dynamic> payload) async {
     try {
+      // Regresamos a JSON puro
       final res = await _dio.patch('/products/$id/', data: payload);
+      return Product.fromJson(res.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw ApiException.fromDioError(e);
+    }
+  }
+
+  @override
+  Future<Product> uploadProductImage(int id, String imagePath) async {
+    try {
+      // Creamos el FormData exclusivo para la imagen
+      final formData = FormData.fromMap({
+        'image_url': await MultipartFile.fromFile(imagePath), 
+        // Nota: Si tu backend espera la clave 'image' o 'file' en vez de 'image_url', cámbiala aquí arriba.
+      });
+
+      final res = await _dio.patch('/products/$id/', data: formData);
       return Product.fromJson(res.data as Map<String, dynamic>);
     } on DioException catch (e) {
       throw ApiException.fromDioError(e);

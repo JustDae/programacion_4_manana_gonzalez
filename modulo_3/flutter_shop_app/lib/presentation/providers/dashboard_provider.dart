@@ -2,7 +2,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/remote/api/category_remote_datasource.dart';
-import '../../data/remote/api/product_remote_datasource.dart';
+import '../../data/remote/api/product_remote_datasource.dart'; // <-- Asegúrate que aquí o en un modelo de API esté definido PaginatedProducts
 import '../../data/remote/api/order_remote_datasource.dart';
 import '../../data/remote/api/user_remote_datasource.dart';
 import '../../domain/model/product.dart';
@@ -87,11 +87,13 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
       final catStats = results[1] as Map<String, dynamic>;
       final orderStats = results[2] as Map<String, dynamic>;
       final userStats = results[3] as Map<String, dynamic>;
-      final lowStock = (results[4] as PaginatedProducts)
-          .results
-          .where((p) => p.stock < 5)
-          .take(5)
-          .toList();
+      final lowStockResult = results[4] as dynamic; 
+      
+      final List<Product> lowStock = List<Product>.from(
+        (lowStockResult.results as Iterable)
+            .where((p) => (p as Product).stock < 5)
+            .take(5)
+      );
 
       final byStatus = (orderStats['by_status'] as Map<String, dynamic>?)
               ?.map((k, v) => MapEntry(k, (v as num).toInt())) ??

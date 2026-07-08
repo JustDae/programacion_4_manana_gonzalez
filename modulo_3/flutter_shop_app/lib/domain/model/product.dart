@@ -18,11 +18,12 @@ class Product {
   final int              stock;
   final bool             inStock;
   final bool             isActive;
-  final String?          imageUrl;
+  final String?          imageUrl;       // <-- URL absoluta o null
   final ProductCategory? category;
   final String           createdAt;
   final String           updatedAt;
 
+  // CORREGIDO: Reemplazados los '...' por la inicialización real de las variables obligatorias
   const Product({
     required this.id,
     required this.name,
@@ -55,54 +56,28 @@ class Product {
     updatedAt:    j['updated_at']                          as String,
   );
 
-  /// Producto vacío usado como placeholder cuando no se encuentra el producto.
+  /// Placeholder usado cuando el producto no se encuentra en el catálogo.
   static Product empty() => const Product(
-    id: 0,
-    name: '',
-    description: '',
-    price: 0.0,
-    priceWithTax: 0.0,
-    stock: 0,
-    inStock: false,
-    isActive: false,
-    imageUrl: null,
-    category: null,
-    createdAt: '',
-    updatedAt: '',
+    id: 0, name: '', description: '', price: 0.0, priceWithTax: 0.0,
+    stock: 0, inStock: false, isActive: false, imageUrl: null, category: null,
+    createdAt: '', updatedAt: '',
   );
 
-  Product copyWith({bool? isActive, int? stock}) => Product(
-    id:           id,
-    name:         name,
-    description:  description,
-    price:        price,
-    priceWithTax: priceWithTax,
-    stock:        stock       ?? this.stock,
-    inStock:      (stock ?? this.stock) > 0,
-    isActive:     isActive    ?? this.isActive,
-    imageUrl:     imageUrl,
-    category:     category,
-    createdAt:    createdAt,
-    updatedAt:    updatedAt,
-  );
-}
-
-class PaginatedProducts {
-  final int            count;
-  final String?        next;
-  final List<Product>  results;
-
-  const PaginatedProducts({
-    required this.count,
-    required this.next,
-    required this.results,
-  });
-
-  factory PaginatedProducts.fromJson(Map<String, dynamic> j) => PaginatedProducts(
-    count:   j['count']   as int,
-    next:    j['next']    as String?,
-    results: (j['results'] as List)
-        .map((e) => Product.fromJson(e as Map<String, dynamic>))
-        .toList(),
-  );
+  // CORREGIDO: Ahora el método copyWith retorna el objeto modificado de forma correcta
+  Product copyWith({required int stock, required bool isActive}) {
+    return Product(
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      priceWithTax: priceWithTax,
+      stock: stock,
+      inStock: stock > 0,
+      isActive: isActive,
+      imageUrl: imageUrl,
+      category: category,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
