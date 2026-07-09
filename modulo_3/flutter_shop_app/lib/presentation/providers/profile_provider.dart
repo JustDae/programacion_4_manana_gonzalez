@@ -7,11 +7,6 @@ import 'package:flutter_shop_app/presentation/domain/model/user_profile.dart';
 import '../../core/error/api_exception.dart';
 import '../../data/remote/api/dio_client.dart';
 
-/// Obtiene el perfil completo del usuario autenticado desde /api/users/profile/.
-/// Incluye [avatarUrl], firstName, lastName y demás campos de [UserProfile].
-///
-/// Usar `ref.invalidate(profileProvider)` después de subir un avatar
-/// para forzar la recarga y mostrar la imagen actualizada.
 final profileProvider = FutureProvider.autoDispose<UserProfile>((ref) async {
   final dio = ref.watch(dioProvider);
   try {
