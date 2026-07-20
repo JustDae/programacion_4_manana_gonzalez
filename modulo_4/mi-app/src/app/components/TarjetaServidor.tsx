@@ -9,7 +9,7 @@ interface TarjetaServidorProps {
   sistema: string
 }
 
-function TarjetaServidor({ nombre, ip, sistema }: TarjetaServidorProps) {
+export default function TarjetaServidor({ nombre, ip, sistema }: TarjetaServidorProps) {
   return (
     <View>
       <Text>{nombre}</Text>
