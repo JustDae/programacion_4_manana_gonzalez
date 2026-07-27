@@ -4,14 +4,11 @@ class FilaEstado extends StatelessWidget {
   final String nombre;
   final String detalle;
   final bool   activo;
-  final bool message;
-
   const FilaEstado({
     super.key,
     required this.nombre,
     required this.detalle,
     required this.activo,
-    required this.message,
   });
 
   @override

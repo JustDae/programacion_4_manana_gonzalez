@@ -26,13 +26,16 @@ class AvatarBadge extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
-            child: Text(
-              nombre.substring(0, 2).toUpperCase(),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize:   18,
-                color:      activo ? Colors.indigo : Colors.grey,
-              ),
+            child: Icon(
+              nombre.toLowerCase().contains('bus') 
+                  ? Icons.directions_bus 
+                  : nombre.toLowerCase().contains('ruta') 
+                      ? Icons.alt_route 
+                      : nombre.toLowerCase().contains('terminal') 
+                          ? Icons.business 
+                          : Icons.directions_transit,
+              size: 28,
+              color: activo ? Colors.indigo : Colors.grey,
             ),
           ),
         ),

@@ -1,8 +1,8 @@
 // lib/main_mp.dart
 import 'package:flutter/material.dart';
 import 'package:modulo07_layouts_mp/widgets/avatar_badge_mp.dart';
-//import 'package:modulo07_layouts_mp/widgets/customized_sized_box_mp.dart';
-//import 'package:modulo07_layouts_mp/widgets/fila_estado_mp.dart';
+import 'package:modulo07_layouts_mp/widgets/customized_sized_box_mp.dart';
+import 'package:modulo07_layouts_mp/widgets/fila_estado_mp.dart';
 import 'package:modulo07_layouts_mp/widgets/tarjeta_log_mp.dart';
 
 // ┌──────────────────────────────────────────────────────────────────┐
@@ -37,7 +37,7 @@ void main() => runApp(MaterialApp(
         ],
       ),
     ),
-    /*3 => const Scaffold(
+    3 => const Scaffold(
       body: Column(
         children: [
           FilaEstado(nombre: 'Ruta 42',   detalle: '10.0.0.5 · 45ms',          activo: true),
@@ -50,41 +50,41 @@ void main() => runApp(MaterialApp(
                      detalle: '10.0.0.8 · 12ms', activo: true),
         ],
       ),
-    ),*/
+    ),
     4 => const Scaffold(
       body: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AvatarBadge(nombre: 'web-01', alertas: 2,  activo: true),
+            AvatarBadge(nombre: 'Bus 102', alertas: 2,  activo: true),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'db-01',  alertas: 0,  activo: true),
+            AvatarBadge(nombre: 'Ruta 42', alertas: 0,  activo: true),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'worker', alertas: 0,  activo: false),
+            AvatarBadge(nombre: 'Bus 305', alertas: 0,  activo: false),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'cache',  alertas: 11, activo: true),
+            AvatarBadge(nombre: 'Terminal', alertas: 11, activo: true),
           ],
         ),
       ),
     ),
-    /*5 => Scaffold(
+    5 => Scaffold(
       body:Center(
         child: CustomizedSizedBox(
           mainAxisAlignment: MainAxisAlignment.center,
-          height: null,
-          width: null,
+          height: 0,
+          width: 0,
           children: [
-            AvatarBadge(nombre: 'web-01', alertas: 2,  activo: true),
+            AvatarBadge(nombre: 'Bus 102', alertas: 2,  activo: true),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'db-01',  alertas: 0,  activo: true),
+            AvatarBadge(nombre: 'Ruta 42', alertas: 0,  activo: true),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'worker', alertas: 0,  activo: false),
+            AvatarBadge(nombre: 'Bus 305', alertas: 0,  activo: false),
             SizedBox(width: 24),
-            AvatarBadge(nombre: 'cache',  alertas: 11, activo: true),
+            AvatarBadge(nombre: 'Terminal', alertas: 11, activo: true),
           ],
         ),
       ),
-    ),*/
+    ),
     _ => Scaffold(body: Center(child: Text('Paso $paso: crea el widget primero'))),
   },
 ));
