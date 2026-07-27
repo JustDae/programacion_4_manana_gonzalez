@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
-import 'todo_dto_mp.dart';
+import 'viaje_dto_mp.dart';
 
 class PantallaPaso2 extends StatelessWidget {
   const PantallaPaso2({super.key});

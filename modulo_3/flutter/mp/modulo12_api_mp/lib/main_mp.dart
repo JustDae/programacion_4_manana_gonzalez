@@ -125,7 +125,7 @@ class PantallaMenu extends StatelessWidget {
         ruta: '/paso3',
         titulo: 'Paso 3',
         subtitulo: 'API real + modelo de dominio',
-        detalle: 'VehículoDto · toDomain() · API Transporte',
+        detalle: 'VehiculoDto · toDomain() · API Transporte',
         icono: Icons.shopping_bag,
         color: Colors.orange,
       ),

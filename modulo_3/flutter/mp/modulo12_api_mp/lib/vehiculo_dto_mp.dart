@@ -1,13 +1,13 @@
-import 'producto_mp.dart';
+import 'vehiculo_mp.dart';
 
-class VehículoDto {
+class VehiculoDto {
   final int     id;
   final String  name;
   final String  price;
   final bool    isActive;
   final String? categoryName;
 
-  const VehículoDto({
+  const VehiculoDto({
     required this.id,
     required this.name,
     required this.price,
@@ -15,7 +15,7 @@ class VehículoDto {
     this.categoryName,
   });
 
-  factory VehículoDto.fromJson(Map<String, dynamic> json) => VehículoDto(
+  factory VehiculoDto.fromJson(Map<String, dynamic> json) => VehiculoDto(
     id:           json['id']            as int,
     name:         json['name']          as String,
     price:        json['price']         as String,
@@ -23,7 +23,7 @@ class VehículoDto {
     categoryName: json['category_name'] as String?,
   );
 
-  Vehículo toDomain() => Vehículo(
+  Vehiculo toDomain() => Vehiculo(
     id:        id,
     nombre:    name,
     precio:    double.tryParse(price) ?? 0,

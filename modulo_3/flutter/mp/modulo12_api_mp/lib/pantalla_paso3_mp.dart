@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
-import 'producto_mp.dart';
-import 'producto_dto_mp.dart';
+import 'vehiculo_mp.dart';
+import 'vehiculo_dto_mp.dart';
 
 class PantallaPaso3 extends StatelessWidget {
   const PantallaPaso3({super.key});
 
-  Future<List<Vehículo>> _fetchVehículos() async {
+  Future<List<Vehiculo>> _fetchVehiculos() async {
     final res = await http.get(
       Uri.parse(
           'https://api.escuelajs.co/api/v1/products?limit=20&offset=0'),
     );
     final lista = jsonDecode(res.body) as List<dynamic>;
     return lista
-        .map((e) => VehículoDto.fromJson(e as Map<String, dynamic>).toDomain())
+        .map((e) => VehiculoDto.fromJson(e as Map<String, dynamic>).toDomain())
         .toList();
   }
 
@@ -27,8 +27,8 @@ class PantallaPaso3 extends StatelessWidget {
         title: const Text('Paso 3 · API real'),
         leading: BackButton(onPressed: () => context.go('/')),
       ),
-      body: FutureBuilder<List<Vehículo>>(
-        future: _fetchVehículos(),
+      body: FutureBuilder<List<Vehiculo>>(
+        future: _fetchVehiculos(),
         builder: (context, snap) {
           if (snap.connectionState != ConnectionState.done) {
             return const Center(child: CircularProgressIndicator());
@@ -37,12 +37,12 @@ class PantallaPaso3 extends StatelessWidget {
             return Center(child: Text('Error: ${snap.error}'));
           }
 
-          final productos = snap.data!;
+          final vehiculos = snap.data!;
           return ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: productos.length,
+            itemCount: vehiculos.length,
             itemBuilder: (context, i) {
-              final p = productos[i];
+              final p = vehiculos[i];
               return Card(
                 child: ListTile(
                   leading: CircleAvatar(
