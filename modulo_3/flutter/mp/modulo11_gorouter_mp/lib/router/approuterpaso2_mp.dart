@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../screens/pantalla_inicio_mp.dart';
 import '../screens/pantalla_buses_mp.dart';
 import '../screens/pantalla_detalle_mp.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 final appRouterPaso2 = GoRouter(
   initialLocation: '/',
@@ -34,7 +34,7 @@ final appRouterPaso2 = GoRouter(
             final id = state.pathParameters['id']!;
             return Scaffold(
               appBar: AppBar(title: Text('Logs de $id')),
-              body:   Center(child: Text('Logs del servidor $id')),
+              body:   Center(child: Text('Ruta del bus $id')),
             );
           },
         ),

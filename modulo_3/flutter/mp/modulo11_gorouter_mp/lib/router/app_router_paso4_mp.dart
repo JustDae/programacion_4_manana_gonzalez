@@ -6,7 +6,7 @@ import '../screens/pantalla_buses_mp.dart';
 import '../screens/pantalla_detalle_mp.dart';
 import '../screens/pantalla_metricas_mp.dart';
 import '../screens/pantalla_ajustes_mp.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 final appRouterPaso4 = GoRouter(
   initialLocation: '/buses',

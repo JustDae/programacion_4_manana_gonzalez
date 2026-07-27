@@ -20,7 +20,7 @@ import 'router/app_router_mp.dart';
 // │  4  Paso 4  ShellRoute completo + NavigationBar persistente     │
 // │  5  Paso 5  Guard redirect + pantalla de login + Riverpod       │
 // └──────────────────────────────────────────────────────────────────┘
-const int paso = 5;
+const int paso =5;
 
 void main() {
   runApp(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:modulo11_gorouter_mp/models/servidor_ssh_mp.dart';
+import 'package:modulo11_gorouter_mp/models/bus_ssh_mp.dart';
 
 class PantallaBuses extends StatelessWidget {
   const PantallaBuses({super.key});

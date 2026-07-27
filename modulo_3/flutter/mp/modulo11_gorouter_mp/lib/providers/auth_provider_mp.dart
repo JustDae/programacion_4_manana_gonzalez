@@ -22,7 +22,7 @@ class AuthNotifier extends Notifier<AuthState> {
     state = const Cargando();
     await Future.delayed(const Duration(seconds: 1));
 
-    if (usuario == 'admin' && password == 'admin123') {
+    if (conductor == 'admin' && password == 'admin123') {
       state = Autenticado(conductor);
     } else {
       state = const ErrorAuth('Conductor o contraseña incorrectos');

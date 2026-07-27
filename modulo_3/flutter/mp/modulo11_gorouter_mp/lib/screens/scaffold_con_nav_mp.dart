@@ -11,7 +11,8 @@ class ScaffoldConNav extends StatelessWidget {
     final loc = GoRouterState.of(context).uri.path;
     if (loc.startsWith('/metricas')) return 1;
     if (loc.startsWith('/ajustes'))  return 2;
-    return 0; // /buses }
+    return 0; // /buses
+  }
 
   @override
   Widget build(BuildContext context) {

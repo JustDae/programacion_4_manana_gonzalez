@@ -1,9 +1,9 @@
 // lib/router/app_router_paso3.dart
 import 'package:go_router/go_router.dart';
-import 'package:modulo11_gorouter_mp/screens/pantallabusesfiltro_mp.dart';
+import 'package:modulo11_gorouter_mp/screens/pantalla_buses_filtro_mp.dart';
 import '../screens/pantalla_inicio_mp.dart';
 import '../screens/pantalla_detalle_mp.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 final appRouterPaso3 = GoRouter(
   initialLocation: '/',

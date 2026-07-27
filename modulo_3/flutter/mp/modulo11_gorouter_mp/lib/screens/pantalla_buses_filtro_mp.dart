@@ -1,7 +1,7 @@
 // lib/screens/pantalla_buses_filtro.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 class PantallaBusesFiltro extends StatelessWidget {
   final bool soloSSL;

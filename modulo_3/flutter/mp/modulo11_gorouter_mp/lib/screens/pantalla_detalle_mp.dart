@@ -1,18 +1,18 @@
 // lib/screens/pantalla_detalle_mp.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 class PantallaDetalle extends StatelessWidget {
   final String      id;
-  final BusSSH? servidor; // puede venir por extras
+  final BusSSH? bus; // puede venir por extras
 
   const PantallaDetalle({super.key, required this.id, this.bus});
 
   @override
   Widget build(BuildContext context) {
     // Si no viene por extras, buscar en la lista simulada
-    final srv = servidor ??
+    final srv = bus ??
         busesSimulados.where((s) => s.id == id).firstOrNull;
 
     final cs = Theme.of(context).colorScheme;

@@ -9,7 +9,7 @@ import '../screens/pantalla_detalle_mp.dart';
 import '../screens/pantalla_metricas_mp.dart';
 import '../screens/pantalla_ajustes_mp.dart';
 import '../screens/pantalla_login_mp.dart';
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 // Función que crea el router con acceso al WidgetRef (para el guard)
 GoRouter appRouterPaso5(WidgetRef ref) => GoRouter(
