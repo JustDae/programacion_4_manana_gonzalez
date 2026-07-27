@@ -1,7 +1,7 @@
 // lib/providers/buses_provider_mp.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
-import '../models/servidor_ssh_mp.dart';
+import '../models/bus_ssh_mp.dart';
 
 // NotifierProvider — estado complejo con métodos propios
 class BusesNotifier extends Notifier<List<BusSSH>> {
@@ -10,7 +10,7 @@ class BusesNotifier extends Notifier<List<BusSSH>> {
     BusSSH(id:'1', nombre:'Bus-01', ruta:'Ruta 42', capacidad:22,   clima:true,  favorito:true),
     BusSSH(id:'2', nombre:'Bus-02',  ruta:'Ruta 10', capacidad:22,   clima:true),
     BusSSH(id:'3', nombre:'Bus-03', ruta:'Ruta 8', capacidad:2222, clima:false),
-    BusSSH(id:'4', nombre:'dev-deb-api',  ruta:'10.0.4.10', capacidad:2222, clima:false)
+    BusSSH(id:'4', nombre:'Bus-04',  ruta:'Ruta 55', capacidad:40, clima:false)
   ];
 
   void toggleFavorito(String id) {
@@ -28,7 +28,7 @@ class BusesNotifier extends Notifier<List<BusSSH>> {
   }
 
   void agregar(BusSSH bus) {
-    state = [...state, servidor];
+    state = [...state, bus];
   }
 }
 

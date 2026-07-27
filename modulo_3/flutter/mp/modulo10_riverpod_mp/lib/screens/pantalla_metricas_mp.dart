@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/metrica_servidor_mp.dart';
+import '../models/metrica_bus_mp.dart';
 import '../providers/metricas_provider_mp.dart';
 
 class PantallaMetricas extends ConsumerWidget {

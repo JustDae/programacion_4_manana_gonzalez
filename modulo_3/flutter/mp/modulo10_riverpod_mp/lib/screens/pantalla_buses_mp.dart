@@ -1,7 +1,7 @@
 // lib/screens/pantalla_buses_mp.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:modulo10_riverpod_mp/models/servidor_ssh_mp.dart';
+import 'package:modulo10_riverpod_mp/models/bus_ssh_mp.dart';
 import '../providers/buses_provider_mp.dart';
 
 class PantallaBuses extends ConsumerWidget {
@@ -67,9 +67,9 @@ class PantallaBuses extends ConsumerWidget {
           ref.read(busesProvider.notifier).agregar(
             BusSSH(
               id:     id,
-              nombre: 'nuevo-srv-$id',
-              ruta:     '192.168.0.${buses.length + 1}',
-              capacidad: 22,
+              nombre: 'nuevo-bus-$id',
+              ruta:     'Ruta ${buses.length + 1}',
+              capacidad: 40,
               clima:    true,
             ),
           );

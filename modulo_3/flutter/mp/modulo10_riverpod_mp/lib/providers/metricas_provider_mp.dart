@@ -1,6 +1,6 @@
 // lib/providers/metricas_provider_mp.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/metrica_servidor_mp.dart';
+import '../models/metrica_bus_mp.dart';
 
 class MetricasNotifier extends AsyncNotifier<List<MetricaBus>> {
   // build() puede ser async — es la carga inicial
