@@ -24,7 +24,7 @@ fun LoginScreen(
     onLoginSuccess: (isStaff: Boolean) -> Unit,
     onNavigateToRegister: () -> Unit,
     viewModel: AuthViewModel = hiltViewModel(),
-    onForgotPassword: () -> Unit,
+    onForgotPassword:     () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
