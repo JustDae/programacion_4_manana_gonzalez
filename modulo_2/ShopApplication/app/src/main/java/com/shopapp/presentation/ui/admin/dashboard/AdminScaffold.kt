@@ -25,11 +25,12 @@ data class AdminNavItem(
 )
 
 val ADMIN_NAV_ITEMS = listOf(
-    AdminNavItem("Dashboard",  Icons.Default.Dashboard,     "admin"),
-    AdminNavItem("Categorías", Icons.Default.Category,      "admin/categories"),
-    AdminNavItem("Productos",  Icons.Default.Inventory,     "admin/products"),
-    AdminNavItem("Pedidos",    Icons.Default.ShoppingBag,   "admin/orders"),
-    AdminNavItem("Usuarios",   Icons.Default.People,        "admin/users"),
+    AdminNavItem("Dashboard",      Icons.Default.Dashboard,    "admin"),
+    AdminNavItem("Categorías",     Icons.Default.Category,     "admin/categories"),
+    AdminNavItem("Productos",      Icons.Default.Inventory,    "admin/products"),
+    AdminNavItem("Pedidos",        Icons.Default.ShoppingBag,  "admin/orders"),
+    AdminNavItem("Usuarios",       Icons.Default.People,       "admin/users"),
+    AdminNavItem("Notificaciones", Icons.Default.Notifications, "admin/notifications"),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)

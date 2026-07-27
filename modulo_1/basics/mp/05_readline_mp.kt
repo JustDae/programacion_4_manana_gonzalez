@@ -8,17 +8,4 @@ fun main() {
     val destino = readLine() ?: "anonimo"
     println("Destino incluido : $destino")
     
-    /*
-    Comentarios multilineas
-    */
-    
-    //comentarios de una sola linea
-    
-    /**
-    * multilineas
-    * comentarios
-    * @ para nombre de usuario
-    * @return un saludo personalizado
-    
-    **/
 }

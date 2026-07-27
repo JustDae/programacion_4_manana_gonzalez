@@ -1,12 +1,16 @@
 // presentation/ui/client/profile/ProfileScreen.kt
 package com.shopapp.presentation.ui.client.profile
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,6 +25,7 @@ import com.shopapp.presentation.viewmodel.ProfileViewModel
 fun ProfileScreen(
     onEditProfile: () -> Unit       = {},
     onLogout:      () -> Unit       = {},
+    onSendNotification: () -> Unit = {},
     viewModel:     ProfileViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
@@ -108,6 +113,36 @@ fun ProfileScreen(
                         Icon(Icons.Default.Edit, null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(8.dp))
                         Text("Editar perfil")
+                    }
+                    val profile = state.profile
+
+                    if (profile?.isStaff == true) {
+                        HorizontalDivider()
+
+                        ListItem(
+                            headlineContent   = {
+                                Text("Enviar notificación", fontWeight = FontWeight.Medium)
+                            },
+                            supportingContent = {
+                                Text("Envía un correo a uno o todos los usuarios")
+                            },
+                            leadingContent    = {
+                                Icon(
+                                    imageVector        = Icons.Default.Send,
+                                    contentDescription = null,
+                                    tint               = MaterialTheme.colorScheme.primary,
+                                )
+                            },
+                            trailingContent   = {
+                                Icon(
+                                    imageVector        = Icons.AutoMirrored.Filled.ArrowForward,
+                                    contentDescription = null,
+                                )
+                            },
+                            modifier = Modifier.clickable(onClick = onSendNotification),
+                        )
+
+                        HorizontalDivider()
                     }
 
                     Spacer(Modifier.height(8.dp))
