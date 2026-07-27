@@ -56,19 +56,19 @@ class CatalogoBotones extends StatelessWidget {
           FilledButton.icon(
             onPressed: () {},
             icon:  const Icon(Icons.send),
-            label: const Text('Enviar reporte'),
+            label: const Text('Reportar incidente'),
           ),
           const SizedBox(height: 8),
           OutlinedButton.icon(
             onPressed: () {},
             icon:  const Icon(Icons.download),
-            label: const Text('Exportar logs'),
+            label: const Text('Exportar viajes'),
           ),
           const SizedBox(height: 8),
           TextButton.icon(
             onPressed: () {},
-            icon:  const Icon(Icons.open_in_new),
-            label: const Text('Ver documentación'),
+            icon:  const Icon(Icons.map),
+            label: const Text('Ver manual de ruta'),
           ),
 
           const Divider(height: 32),

@@ -17,7 +17,7 @@ class _PantallaNavegacionState extends State<PantallaNavegacion> {
 
     return Scaffold(
       appBar: AppBar(
-        title:           const Text('Sistema de Monitoreo'),
+        title:           const Text('Gestión de Flota'),
         backgroundColor: cs.surfaceContainerHighest,
       ),
       body: IndexedStack(
@@ -85,7 +85,7 @@ class _PantallaDashboard extends StatelessWidget {
         Row(children: [
           Expanded(child: _TarjetaMetrica(titulo: 'Tiempo en ruta',   valor: '99.8%', icono: Icons.trending_up, color: cs.tertiaryContainer)),
           const SizedBox(width: 8),
-          Expanded(child: _TarjetaMetrica(titulo: 'Tráfico',  valor: '4.2 GB', icono: Icons.location_on,       color: cs.secondaryContainer)),
+          Expanded(child: _TarjetaMetrica(titulo: 'Pasajeros',  valor: '4.2 K', icono: Icons.people,       color: cs.secondaryContainer)),
         ]),
       ],
     );
@@ -140,8 +140,8 @@ class _PantallaBuses extends StatelessWidget {
       itemBuilder: (ctx, i) => Card(
         child: ListTile(
           leading:  Icon(Icons.directions_bus, color: cs.primary),
-          title:    Text('Bus-0${i + 1}'),
-          subtitle: Text('10.0.2.${i + 10} · Activo'),
+          title:    Text('Unidad 10${i + 1}'),
+          subtitle: Text('Ruta ${i + 40} · En Servicio'),
           trailing: Icon(Icons.chevron_right, color: cs.onSurfaceVariant),
           onTap: () {},
         ),

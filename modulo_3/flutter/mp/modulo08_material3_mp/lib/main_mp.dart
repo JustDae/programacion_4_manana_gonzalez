@@ -15,7 +15,7 @@ import 'package:modulo08_material3_mp/screens/pantalla_tema_mp.dart';
 // │  5  Paso 5  NavigationBar con 4 pestañas                        │
 // │  6  Paso 6  SnackBar y AlertDialog                              │
 // └──────────────────────────────────────────────────────────────────┘
-const int paso = 6;
+const int paso = 5;
 
 void main() => runApp(const AppMonitoreo());
 
@@ -75,7 +75,7 @@ class _Paso1 extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:           const Text('Sistema de Monitoreo'),
+        title:           const Text('Gestión de Flota'),
         backgroundColor: cs.primaryContainer,
         foregroundColor: cs.onPrimaryContainer,
         actions: [
@@ -89,19 +89,19 @@ class _Paso1 extends StatelessWidget {
             Icon(Icons.directions_bus, size: 64, color: cs.primary),
             const SizedBox(height: 16),
             Text(
-              'Bus web-01',
+              'Unidad 101',
               style: text.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              '10.0.2.10 · Ubuntu 24.04',
+              'Ruta 42 · Centro-Norte',
               style: text.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
               onPressed: () {},
               icon:  const Icon(Icons.contact_phone),
-              label: const Text('Contactar bus'),
+              label: const Text('Contactar conductor'),
             ),
           ],
         ),

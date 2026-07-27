@@ -75,7 +75,7 @@ class PantallaTema extends StatelessWidget {
                         label: const Text('Flota'),
                       ),
                       const SizedBox(width: 8),
-                      OutlinedButton(onPressed: () {}, child: const Text('Logs')),
+                      OutlinedButton(onPressed: () {}, child: const Text('Viajes')),
                     ]),
                   ],
                 ),

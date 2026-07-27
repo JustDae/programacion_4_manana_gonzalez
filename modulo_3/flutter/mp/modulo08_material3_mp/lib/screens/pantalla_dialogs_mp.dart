@@ -35,8 +35,8 @@ class PantallaDialogs extends StatelessWidget {
         icon: const Icon(Icons.info_outline, color: Colors.blue, size: 32),
         title: const Text('Actualización del Sistema'),
         content: const Text(
-          'Se ha programado un mantenimiento para las 02:00 AM. '
-          'Por favor, guarde todos sus cambios antes de esa hora.',
+          'Se ha programado mantenimiento de la flota para las 02:00 AM. '
+          'Por favor, guarde todos sus registros de ruta antes de esa hora.',
         ),
         actions: [
           TextButton(
@@ -53,10 +53,10 @@ class PantallaDialogs extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         icon: const Icon(Icons.info_outline, color: Color.fromARGB(255, 119, 39, 19), size: 32),
-        title: const Text('Nuevo boton implementado'),
+        title: const Text('Nueva unidad registrada'),
         content: const Text(
-          'click en el boton nuevo '
-          'Por favor, guarde todos sus cambios',
+          'Se ha registrado correctamente la nueva unidad. '
+          'Por favor, actualice la vista de la flota.',
         ),
         actions: [
           TextButton(
@@ -114,7 +114,7 @@ class PantallaDialogs extends StatelessWidget {
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Agregar servidor'),
+        title: const Text('Agregar Nueva Unidad'),
         content: Form(
           key: formKey,
           child: Column(
@@ -122,17 +122,16 @@ class PantallaDialogs extends StatelessWidget {
             children: [
               TextFormField(
                 controller: ctrlNombre,
-                decoration: const InputDecoration(labelText: 'Nombre'),
+                decoration: const InputDecoration(labelText: 'Número Económico'),
                 validator: (v) => v == null || v.isEmpty ? 'Campo requerido' : null,
               ),
               const SizedBox(height: 8),
               TextFormField(
                 controller: ctrlIp,
-                decoration: const InputDecoration(labelText: 'Dirección IP'),
+                decoration: const InputDecoration(labelText: 'Placa (Ej: ABC-1234)'),
                 validator: (v) {
                   if (v == null || v.isEmpty) return 'Campo requerido';
-                  final partes = v.split('.');
-                  if (partes.length != 4) return 'Formato: 192.168.1.1';
+                  if (!v.contains('-')) return 'Formato: ABC-1234';
                   return null;
                 },
               ),
@@ -231,7 +230,7 @@ class PantallaDialogs extends StatelessWidget {
           // Diálogo con Formulario
           FilledButton.tonal(
             onPressed: () => _mostrarFormulario(context),
-            child: const Text('Agregar servidor (Formulario)'),
+            child: const Text('Agregar Unidad (Formulario)'),
           ),
         ],
       ),
