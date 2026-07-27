@@ -130,8 +130,8 @@ class _FormularioBusState extends State<FormularioBus> {
             onFieldSubmitted: (_) => _focusConductor.requestFocus(),
             validator: (v) {
               final capacidad = int.tryParse(v ?? '');
-              if (puerto == null)               return 'La capacidad debe ser un número';
-              if (puerto < 1 || capacidad > 65535) return 'Capacidad inválida';
+              if (capacidad == null)               return 'La capacidad debe ser un número';
+              if (capacidad < 10 || capacidad > 200) return 'Capacidad inválida (ej. 10 a 200)';
               return null;
             },
           ),

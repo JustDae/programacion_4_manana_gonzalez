@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/servidor_ssh_mp.dart';
 
 class TarjetaBusGrid extends StatelessWidget {
-  final BusSSH  servidor;
+  final BusSSH  bus;
   final VoidCallback onFavorito;
   final VoidCallback onEliminar;
 
@@ -29,15 +29,15 @@ class TarjetaBusGrid extends StatelessWidget {
             Row(children: [
               Icon(
                 Icons.directions_bus,
-                color: servidor.clima ? cs.primary : cs.outline,
+                color: bus.clima ? cs.primary : cs.outline,
                 size: 18,
               ),
               const Spacer(),
               GestureDetector(
                 onTap: onFavorito,
                 child: Icon(
-                  servidor.favorito ? Icons.star : Icons.star_border,
-                  color: servidor.favorito ? Colors.amber : cs.outline,
+                  bus.favorito ? Icons.star : Icons.star_border,
+                  color: bus.favorito ? Colors.amber : cs.outline,
                   size: 18,
                 ),
               ),
@@ -46,13 +46,13 @@ class TarjetaBusGrid extends StatelessWidget {
 
             // Nombre e IP
             Text(
-              servidor.nombre,
+              bus.nombre,
               style: text.titleSmall?.copyWith(fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              servidor.ruta,
+              bus.ruta,
               style: text.bodySmall?.copyWith(color: cs.onSurfaceVariant),
             ),
 
@@ -60,14 +60,14 @@ class TarjetaBusGrid extends StatelessWidget {
 
             // Fila inferior: SSL + SO + eliminar
             Row(children: [
-              if (servidor.clima)
+              if (bus.clima)
                 Padding(
                   padding: const EdgeInsets.only(right: 4),
                   child: Icon(Icons.ac_unit, size: 12, color: cs.primary),
                 ),
               Expanded(
                 child: Text(
-                  servidor.modelo,
+                  bus.modelo,
                   style: text.labelSmall?.copyWith(color: cs.onSurfaceVariant),
                   overflow: TextOverflow.ellipsis,
                 ),

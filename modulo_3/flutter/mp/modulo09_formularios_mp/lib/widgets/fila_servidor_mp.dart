@@ -17,7 +17,7 @@ class FilaBus extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
 
     final bool tieneSsl = _verificarSsl(bus);
-    final bool esFavorito = servidor.favorito ?? false;
+    final bool esFavorito = bus.favorito ?? false;
 
     return ListTile(
       leading: CircleAvatar(
@@ -30,11 +30,11 @@ class FilaBus extends StatelessWidget {
         ),
       ),
       title: Text(
-        servidor.nombre,
+        bus.nombre,
         style: const TextStyle(fontWeight: FontWeight.w600),
       ),
       subtitle: Text(
-        'Cond: ${servidor.conductor} | Ruta: ${servidor.ruta} | Cap: ${servidor.capacidad}',
+        'Cond: ${bus.conductor} | Ruta: ${bus.ruta} | Cap: ${bus.capacidad}',
         style: TextStyle(fontSize: 12, color: cs.onSurfaceVariant),
       ),
       trailing: Row(

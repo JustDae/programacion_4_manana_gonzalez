@@ -1,9 +1,8 @@
 // lib/screens/pantalla_buses_mp.dart
 import 'package:flutter/material.dart';
-import 'package:modulo09_formularios_mp/widgets/tarjetaservidorgrid_mp.dart';
 import '../models/servidor_ssh_mp.dart';
 import '../widgets/fila_servidor_mp.dart';
-import '../widgets/tarjeta_servidor_grid_mp.dart' hide TarjetaBusGrid;
+import '../widgets/tarjeta_servidor_grid_mp.dart';
 
 class PantallaBuses extends StatefulWidget {
   const PantallaBuses({super.key});

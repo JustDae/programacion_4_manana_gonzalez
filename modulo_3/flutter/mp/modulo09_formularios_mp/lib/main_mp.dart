@@ -149,19 +149,16 @@ class _Paso2 extends StatelessWidget {
         backgroundColor: cs.primaryContainer,
         foregroundColor: cs.onPrimaryContainer,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: FormularioBus(
-          onGuardar: (datos) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                    'Guardado: ${datos['nombre']} — ${datos['ip']}:${datos['puerto']}'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-          },
-        ),
+      body: FormularioBus(
+        onGuardar: (datos) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'Bus Guardado: ${datos['nombre']} — Ruta ${datos['ip']} (Cap: ${datos['puerto']})'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        },
       ),
     );
   }
