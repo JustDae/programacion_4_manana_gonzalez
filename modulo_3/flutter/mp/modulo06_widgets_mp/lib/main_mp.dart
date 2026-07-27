@@ -17,7 +17,7 @@ import 'package:modulo06_widgets_mp/widgets/servicio_estado_mp.dart';
 // │  7  Paso 5   BuildContext                                        │
 // │  8  Paso 6   Composición de widgets                             │
 // └──────────────────────────────────────────────────────────────────┘
-const int paso = 1;
+const int paso = 6;
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
